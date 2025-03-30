@@ -1,8 +1,7 @@
 #pragma once
 
-#include "IComponent.hpp"
+#include "Component.hpp"
 #include "assert.hpp"
-
 #include <type_traits>
 #include <vector>
 

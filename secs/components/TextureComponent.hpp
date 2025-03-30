@@ -1,14 +1,14 @@
 #pragma once
 
-#include "IComponent.hpp"
+#include "Component.hpp"
 
 namespace secs {
 
 
-struct TextureComponent : IComponent {
+struct TextureComponent : Component {
     size_t textureIndex;
 
-    TextureComponent(const size_t textureIndex) : IComponent(), textureIndex(textureIndex) {
+    TextureComponent(const size_t textureIndex) : Component(), textureIndex(textureIndex) {
     }
 
     ComponentType type() const override { return ComponentType::TEXTURE_COMPONENT; }

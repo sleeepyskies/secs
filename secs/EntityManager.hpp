@@ -1,9 +1,9 @@
 #pragma once
 
-#include "IComponent.hpp"
+#include "Component.hpp"
+#include "Entity.hpp"
 #include "assert.hpp"
 #include "types.hpp"
-#include "Entity.hpp"
 #include <queue>
 
 namespace secs {
@@ -19,19 +19,42 @@ public:
     ~EntityManager() = default;
 
     /// @brief Creates a new Entity with the first available ID, if there are any available.
-    Entity createEntity();
+    Entity createEntity() {
+        SECS_ASSERT(m_entityCount < MAX_ENTITIES,
+                    "Cannot create anymore entities! Max number has already been reached");
+
+        m_entityCount++;
+        if (m_unusedIDs.empty())
+            return Entity{ m_entityCount };
+        const EntityID id = m_unusedIDs.front();
+        m_unusedIDs.pop();
+        return Entity{ id };
+    }
     /// @brief Destroys the given entity and frees up its ID for use.
-    void destroyEntity(Entity entity);
+    void destroyEntity(Entity entity) {
+        SECS_ASSERT(entity.id() <= m_entityCount, "Cannot destroy entity with invalid ID!");
+
+        m_unusedIDs.push(entity.id());
+        m_entityCount--;
+    }
     /**
      * @brief Updates the given entities bitmask to correspond with its new component type.
      * @returns true on success, false otherwise.
      */
-    void assignComponent(Entity &entity, ComponentType type) const;
+    void assignComponent(Entity &entity, ComponentType type) const {
+        const auto pos = static_cast<size_t>(type);
+        SECS_ASSERT(!entity.test(pos), "This entity already has this component assigned.");
+        entity.flip(pos);
+    }
     /**
      * @brief Removes the given entities bitmask corresponding with the component type.
      * @returns true on success, false otherwise.
      */
-    void removeComponent(Entity &entity, ComponentType type) const;
+    void removeComponent(Entity &entity, ComponentType type) const {
+        const auto pos = static_cast<size_t>(type);
+        SECS_ASSERT(entity.test(pos), "This entity already has this component assigned.");
+        entity.flip(pos);
+    }
 
 private:
     /// @brief The amount of alive entities active.

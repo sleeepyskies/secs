@@ -12,28 +12,30 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(slog)
 
-add_library(secs STATIC
-        src/ComponentManager.hpp
-        src/ecs.hpp
-        src/Entity.hpp
-        src/EntityManager.cpp
-        src/EntityManager.hpp
-        src/IComponentList.hpp
-        src/Scene.hpp
-        src/SystemManager.hpp
-        src/systems/RenderSystem.hpp
-        src/components/IComponent.hpp
-        src/components/TextureComponent.hpp
-        src/components/TransformComponent.hpp
-        src/util/types.hpp
-        src/util/types.hpp
+add_library(secs INTERFACE
+        # Core Data Classes
+        secs/Entity.hpp
+        secs/IComponentList.hpp
+
+        # Core Logic Classes
+        secs/EntityManager.hpp
+        secs/ComponentManager.hpp
+        secs/SystemManager.hpp
+        secs/Scene.hpp
+
+        # Components
+        secs/components/Component.hpp
+        secs/components/TextureComponent.hpp
+        secs/components/TransformComponent.hpp
+
+        # Systems
+        secs/systems/RenderSystem.hpp
+
+        # Util
+        secs/util/types.hpp
+        secs/util/assert.hpp
 )
 
-target_include_directories(secs PUBLIC
-        ${CMAKE_CURRENT_SOURCE_DIR}/src
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/components
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/systems
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/util
-)
+target_include_directories(secs INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/secs)
 
-target_include_directories(secs PRIVATE ${slog_SOURCE_DIR})
+target_include_directories(secs INTERFACE ${slog_SOURCE_DIR})

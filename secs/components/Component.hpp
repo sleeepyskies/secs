@@ -11,20 +11,21 @@ namespace secs {
 class ComponentIDGenerator {
 public:
     static ComponentID id() { return s_currentId++; }
+
 private:
     static inline ComponentID s_currentId = 1;
 };
 
 enum class ComponentType {
-    TEXTURE_COMPONENT = 0,
+    TEXTURE_COMPONENT  = 0,
     POSITION_COMPONENT = 1
     // ...
 };
 
 /// @brief The base Component class that all other Components must implement.
-struct IComponent {
+struct Component {
     ComponentID id                     = ComponentIDGenerator::id();
-    virtual ~IComponent()              = default;
+    virtual ~Component()               = default;
     virtual ComponentType type() const = 0;
 };
 } // namespace secs

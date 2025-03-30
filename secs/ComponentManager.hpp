@@ -1,10 +1,9 @@
 #pragma once
 
 #include "Entity.hpp"
-#include "IComponent.hpp"
+#include "Component.hpp"
 #include "IComponentList.hpp"
 #include "assert.hpp"
-#include "ecs.hpp"
 #include "types.hpp"
 #include <set>
 #include <typeindex>
