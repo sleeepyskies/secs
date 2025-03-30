@@ -1,9 +1,16 @@
-cmake_minimum_required(VERSION 3.30)
+cmake_minimum_required(VERSION 3.15...3.31)
 project(secs)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_subdirectory(external/slog)
+# slog is my own lightweight header only logging library used throughout this project
+include(FetchContent)
+FetchContent_Declare(
+        slog
+        GIT_REPOSITORY https://github.com/sleeepyskies/slog.git
+        GIT_TAG main
+)
+FetchContent_MakeAvailable(slog)
 
 add_library(secs STATIC
         src/ComponentManager.hpp
@@ -19,6 +26,7 @@ add_library(secs STATIC
         src/components/TextureComponent.hpp
         src/components/TransformComponent.hpp
         src/util/types.hpp
+        src/util/types.hpp
 )
 
 target_include_directories(secs PUBLIC
@@ -28,4 +36,4 @@ target_include_directories(secs PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/src/util
 )
 
-target_include_directories(secs PUBLIC external/slog)
+target_include_directories(secs PRIVATE ${slog_SOURCE_DIR})

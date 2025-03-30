@@ -1,3 +1,0 @@
-[submodule "external/slog"]
-	path = external/slog
-	url = https://github.com/sleeepyskies/slog.git
