@@ -5,7 +5,7 @@
 #include "types.hpp"
 #include <typeindex>
 
-namespace sle {
+namespace secs {
 
 class SystemManager {
 public:
@@ -37,4 +37,4 @@ private:
     hashmap<std::type_index, ref<ISystem>> m_registeredSystems{};
 };
 
-} // namespace sle
+} // namespace secs

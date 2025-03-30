@@ -1,6 +1,6 @@
 #pragma once
 
-namespace sle {
+namespace secs {
 
 class Scene;
 
@@ -16,4 +16,4 @@ public:
     virtual void update(const float deltaTime, const Scene &scene) = 0;
 };
 
-} // namespace sle
+} // namespace secs

@@ -9,7 +9,7 @@
 #include <set>
 #include <typeindex>
 
-namespace sle {
+namespace secs {
 struct Entity;
 
 /**
@@ -91,4 +91,4 @@ private:
     /// @brief Map of ComponentID to all Entities who had this component
     hashmap<ComponentID, hashset<EntityID>> m_componentToEntities{};
 };
-} // namespace sle
+} // namespace secs

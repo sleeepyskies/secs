@@ -1,6 +1,6 @@
 #include "EntityManager.hpp"
 
-namespace sle {
+namespace secs {
 
 Entity EntityManager::createEntity() {
     SECS_ASSERT(m_entityCount < MAX_ENTITIES, "Cannot create anymore entities! Max number has already been reached");
@@ -32,4 +32,4 @@ void EntityManager::removeComponent(Entity &entity, ComponentType type) const {
     entity.flip(pos);
 }
 
-} // namespace sle
+} // namespace secs

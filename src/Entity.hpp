@@ -2,7 +2,7 @@
 
 #include "types.hpp"
 
-namespace sle {
+namespace secs {
 /**
  * @brief An Entity in sle is just an unsigned 32-bit integer id, as well as a component mask
  * representing which components this entity has.
@@ -24,4 +24,4 @@ private:
     EntityID m_id = 0;
     ComponentMask m_mask{};
 };
-} // namespace sle
+} // namespace secs

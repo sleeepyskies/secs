@@ -6,7 +6,7 @@
 #include "SystemManager.hpp"
 #include "Texture.hpp"
 
-namespace sle {
+namespace secs {
 
 /**
  * @brief The Scene class acts as an API for the Entity-Component-System in sle. It manages the lifetime
@@ -63,4 +63,4 @@ private:
     std::vector<ref<Texture>> m_textures;
 };
 
-} // namespace sle
+} // namespace secs

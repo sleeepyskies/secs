@@ -1,7 +1,7 @@
 #pragma once
 #include "ISystem.hpp"
 
-namespace sle {
+namespace secs {
 /**
  * This system handles Rendering all Entities that have the following:
  * - TextureComponent
@@ -12,4 +12,4 @@ class RenderSystem final : public ISystem {
 
     }
 };
-} // namespace sle
+} // namespace secs

@@ -6,7 +6,7 @@
 #include <type_traits>
 #include <vector>
 
-namespace sle {
+namespace secs {
 
 /**
  * @brief The use of this abstract non-templated class is to allow us to have multiple ComponentList
@@ -71,4 +71,4 @@ private:
     hashmap<ComponentID, size_t> m_componentToIndex{};
 };
 
-} // namespace sle
+} // namespace secs

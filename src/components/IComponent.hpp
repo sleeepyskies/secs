@@ -2,7 +2,7 @@
 
 #include "types.hpp"
 
-namespace sle {
+namespace secs {
 
 /**
  * @brief This class is used by components to make sure they receive a unique ID without much overhead. Note that an id
@@ -27,4 +27,4 @@ struct IComponent {
     virtual ~IComponent()              = default;
     virtual ComponentType type() const = 0;
 };
-} // namespace  sle
+} // namespace secs

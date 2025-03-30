@@ -3,7 +3,7 @@
 #include "IComponent.hpp"
 #include <SDL.h>
 
-namespace sle {
+namespace secs {
 
 struct TransformComponent : IComponent {
     SDL_Rect position;
@@ -12,4 +12,4 @@ struct TransformComponent : IComponent {
     ComponentType type() const override { return ComponentType::POSITION_COMPONENT; }
 };
 
-} // namespace sle
+} // namespace secs

@@ -2,7 +2,7 @@
 
 #include "IComponent.hpp"
 
-namespace sle {
+namespace secs {
 
 
 struct TextureComponent : IComponent {
@@ -15,4 +15,4 @@ struct TextureComponent : IComponent {
 };
 
 
-} // namespace sle
+} // namespace secs

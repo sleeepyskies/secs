@@ -6,7 +6,7 @@
 #include "Entity.hpp"
 #include <queue>
 
-namespace sle {
+namespace secs {
 
 /**
  * @brief The EntityManager is responsible for managing Entities. This means creating and destroying
@@ -40,4 +40,4 @@ private:
     std::queue<EntityID> m_unusedIDs{};
 };
 
-} // namespace sle
+} // namespace secs
