@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Component.hpp"
+#include "components/Component.hpp"
 #include "Entity.hpp"
-#include "assert.hpp"
-#include "types.hpp"
+#include "util/secsAssert.hpp"
+#include "util/secsTypes.hpp"
 #include <queue>
 
 namespace secs {

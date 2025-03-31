@@ -32,10 +32,16 @@ add_library(secs INTERFACE
         secs/systems/RenderSystem.hpp
 
         # Util
-        secs/util/types.hpp
-        secs/util/assert.hpp
+        secs/util/secsTypes.hpp
+        secs/util/secsAssert.hpp
 )
 
-target_include_directories(secs INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/secs)
+target_include_directories(
+        secs INTERFACE
+        ${CMAKE_CURRENT_SOURCE_DIR}/secs
+        ${CMAKE_CURRENT_SOURCE_DIR}/secs/components
+        ${CMAKE_CURRENT_SOURCE_DIR}/secs/systems
+        ${CMAKE_CURRENT_SOURCE_DIR}/secs/util
+)
 
 target_include_directories(secs INTERFACE ${slog_SOURCE_DIR})

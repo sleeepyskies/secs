@@ -1,8 +1,7 @@
 #pragma once
 
-#include "Component.hpp"
-#include "assert.hpp"
-#include <type_traits>
+#include "components/Component.hpp"
+#include "util/secsAssert.hpp"
 #include <vector>
 
 namespace secs {
@@ -14,7 +13,6 @@ namespace secs {
 class IComponentList {
 public:
     virtual ~IComponentList() = default;
-    /* virtual ref<IComponent> getComponent(size_t index) = 0; */
 };
 
 /**
@@ -24,8 +22,8 @@ template <typename T> class ComponentList : public IComponentList {
 public:
     /// @brief Inserts a Component into the array.
     void insert(const T &component) {
-        SLE_ASSERT(m_list.size() < MAX_ENTITIES, "Cannot have anymore Components of this type.");
-        SLE_ASSERT(!m_componentToIndex.contains(component.id), "This component is already in this list.");
+        SECS_ASSERT(m_list.size() < MAX_ENTITIES, "Cannot have anymore Components of this type.");
+        SECS_ASSERT(!m_componentToIndex.contains(component.id), "This component is already in this list.");
 
         m_list.push_back(component);
         const size_t index               = m_list.size() - 1;
@@ -34,14 +32,14 @@ public:
 
     /// @brief Allows deletion via ComponentID.
     void remove(const ComponentID id) {
-        SLE_ASSERT(m_componentToIndex.contains(id), "Cannot delete a component that is not the the array.");
+        SECS_ASSERT(m_componentToIndex.contains(id), "Cannot delete a component that is not the the array.");
 
         removeIndex(m_componentToIndex[id]);
     }
 
     /// @brief Returns the component instance with the given id.
     T &getComponent(const ComponentID id) {
-        SLE_ASSERT(m_componentToIndex.contains(id), "Cannot retrieve component that is not in the array.");
+        SECS_ASSERT(m_componentToIndex.contains(id), "Cannot retrieve component that is not in the array.");
         return m_list[m_componentToIndex[id]];
     }
 
@@ -56,7 +54,7 @@ public:
 private:
     /// @brief Allows deletion via index.
     void removeIndex(const size_t index) {
-        SLE_ASSERT(index < m_list.size(), "Cannot remove this component due to out of bounds indexing.");
+        SECS_ASSERT(index < m_list.size(), "Cannot remove this component due to out of bounds indexing.");
 
         m_componentToIndex.erase(m_list[index].id);
         m_list[index] = m_list[m_list.size() - 1];

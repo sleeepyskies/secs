@@ -1,12 +1,10 @@
 #pragma once
 
 #include "Entity.hpp"
-#include "Component.hpp"
 #include "IComponentList.hpp"
-#include "assert.hpp"
-#include "types.hpp"
-#include <set>
 #include <typeindex>
+#include "util/secsAssert.hpp"
+#include "util/secsTypes.hpp"
 
 namespace secs {
 struct Entity;

@@ -1,5 +1,6 @@
 #pragma once
-#include "ISystem.hpp"
+
+#include "System.hpp"
 
 namespace secs {
 /**
@@ -7,7 +8,7 @@ namespace secs {
  * - TextureComponent
  * - TransformComponent
  */
-class RenderSystem final : public ISystem {
+class RenderSystem final : public System {
     void update(const float deltaTime, const Scene &scene) override {
 
     }

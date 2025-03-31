@@ -2,9 +2,8 @@
 
 #include "ComponentManager.hpp"
 #include "EntityManager.hpp"
-#include "ISystem.hpp"
 #include "SystemManager.hpp"
-#include "Texture.hpp"
+#include "systems/System.hpp"
 
 namespace secs {
 
@@ -51,7 +50,7 @@ public:
     }
 
     /// @brief Registers a system to be active.
-    template <typename T> ref<ISystem> registerSystem() { return m_systemManager.registerSystem<T>(); }
+    template <typename T> ref<System> registerSystem() { return m_systemManager.registerSystem<T>(); }
     /// @brief Unregisters a system.
     template <typename T> void unregisterSystem() { m_systemManager.unregisterSystem<T>(); }
 
@@ -59,8 +58,6 @@ private:
     EntityManager m_entityManager;
     ComponentManager m_componentManager;
     SystemManager m_systemManager;
-
-    std::vector<ref<Texture>> m_textures;
 };
 
 } // namespace secs
