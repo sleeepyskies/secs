@@ -27,14 +27,18 @@ public:
         if (m_unusedIDs.empty())
             return Entity{ m_entityCount };
         const EntityID id = m_unusedIDs.front();
+        SECS_ASSERT(!m_entities.contains(id), "This Entity ID already exists!");
         m_unusedIDs.pop();
+        m_entities.insert(id);
         return Entity{ id };
     }
     /// @brief Destroys the given entity and frees up its ID for use.
-    void destroyEntity(Entity entity) {
+    void destroyEntity(const Entity &entity) {
         SECS_ASSERT(entity.id() <= m_entityCount, "Cannot destroy entity with invalid ID!");
+        SECS_ASSERT(m_entities.contains(entity.id()), "This Entity ID does not exist!!");
 
         m_unusedIDs.push(entity.id());
+        m_entities.erase(entity.id());
         m_entityCount--;
     }
     /**
@@ -56,11 +60,16 @@ public:
         entity.flip(pos);
     }
 
+    /// @brief Returns a set of all active entity ID's.
+    hashset<EntityID> entities() { return m_entities; }
+
 private:
     /// @brief The amount of alive entities active.
     uint32_t m_entityCount = 0;
     /// @brief Any unused entity IDs from entities that have been removed.
     std::queue<EntityID> m_unusedIDs{};
+    /// @brief An array of active entity id's used for systems.
+    hashset<EntityID> m_entities{};
 };
 
 } // namespace secs
