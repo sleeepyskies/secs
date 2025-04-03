@@ -3,7 +3,6 @@
 #include "ComponentManager.hpp"
 #include "EntityManager.hpp"
 #include "SystemManager.hpp"
-#include "systems/System.hpp"
 
 namespace secs {
 /**
@@ -35,6 +34,8 @@ public:
     }
 
     /// @brief Creates an internal relation between the Entity and the Component in the system.
+    /// Note that secs will create a copy of the component passed to store internally, such that
+    /// the caller cannot make manual changes to the components passed tos secs.
     template<typename T>
     void registerComponent(Entity &entity, const T &component) {
         SECS_ASSERT(entity, "Cannot register component for entity that is not alive.");
@@ -65,8 +66,8 @@ public:
     template<typename... Args>
     std::vector<EntityID> getComponentEntities() {
         std::vector<EntityID> entities{};
-        for (const auto &e: m_entityManager.entities()) {
-            if ((m_componentManager.hasComponent<Args>() && ...)) {
+        for (const EntityID &e: m_entityManager.entities()) {
+            if ((m_componentManager.hasComponent<Args>(e) && ...)) {
                 entities.push_back(e);
             }
         }

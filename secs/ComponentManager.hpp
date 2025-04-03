@@ -74,6 +74,11 @@ public:
     template <typename T> bool hasComponent(const Entity &entity) {
         return static_cast<bool>(m_entityToComponentID[entity.id()][index<T>()]);
     }
+    /// @brief Checks if the entity has this component type. A ComponentID of 0 is invalid, so we just cast this to a
+    /// boolean.
+    template <typename T> bool hasComponent(const EntityID id) {
+        return static_cast<bool>(m_entityToComponentID[id][index<T>()]);
+    }
 
     // ------------- PRIVATE FUNCTIONS ---------------
 private:

@@ -34,6 +34,9 @@ add_library(secs INTERFACE
         # Util
         secs/util/secsTypes.hpp
         secs/util/secsAssert.hpp
+        secs/systems/CameraSystem.hpp
+        secs/components/CameraComponent.hpp
+        secs/util/InputData.hpp
 )
 
 target_include_directories(

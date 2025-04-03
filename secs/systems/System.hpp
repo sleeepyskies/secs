@@ -1,5 +1,7 @@
 #pragma once
 
+#include "util/InputData.hpp"
+
 namespace secs {
 
 class Scene;
@@ -13,7 +15,7 @@ public:
     virtual ~System() = default;
 
     /// @brief Handles updating this systems logic.
-    virtual void update(const float deltaTime, Scene &scene) = 0;
+    virtual void update(float deltaTime, Scene &scene, InputData &inputData) = 0;
 };
 
 } // namespace secs
