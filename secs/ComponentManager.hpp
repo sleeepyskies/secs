@@ -83,7 +83,7 @@ public:
     // ------------- PRIVATE FUNCTIONS ---------------
 private:
     /// @brief Returns the hashmap index for checking which components an entity has.
-    template <typename T> [[nodiscard]] std::type_index index() const { return std::type_index(typeid(T)); }
+    template <typename T> [[nodiscard]] std::type_index index() const { return ComponentBitRegistry::index<T>(); }
 
     // ------------- MEMBER VARIABLES ---------------
 private:
