@@ -20,7 +20,7 @@ private:
 
 /**
  * @brief This class handles assigning each Component Type a unique number in the range [0, MAX_COMPONENTS].
- * This is used for setting the ComponentMask bits. TODO: Also make it be used in ComponentManager for indexing.
+ * This is used for setting the ComponentMask bits.
  */
 class ComponentBitRegistry {
 public:
@@ -44,8 +44,8 @@ private:
  *@brief The base Component class that all other Components must implement.
 */
 struct Component {
-    ComponentID id                     = ComponentIDGenerator::id();
-    virtual ~Component()               = default;
+    ComponentID id       = ComponentIDGenerator::id();
+    virtual ~Component() = default;
 };
 
 } // namespace secs
