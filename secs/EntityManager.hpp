@@ -26,9 +26,9 @@ public:
         m_entityCount++;
         EntityID id = 0;
         if (m_unusedIDs.empty()) {
-            id =  m_entityCount;
+            id = m_entityCount;
         } else {
-            id =  m_unusedIDs.front();
+            id = m_unusedIDs.front();
             m_unusedIDs.pop();
         }
         SECS_ASSERT(!m_entities.contains(id), "This Entity ID already exists!");
@@ -48,8 +48,8 @@ public:
      * @brief Updates the given entities bitmask to correspond with its new component type.
      * @returns true on success, false otherwise.
      */
-    void assignComponent(Entity &entity, ComponentType type) const {
-        const auto pos = static_cast<size_t>(type);
+    template <typename T> void assignComponent(Entity &entity) const {
+        const auto pos = ComponentBitRegistry::index<T>();
         SECS_ASSERT(!entity.test(pos), "This entity already has this component assigned.");
         entity.flip(pos);
     }
@@ -57,8 +57,8 @@ public:
      * @brief Removes the given entities bitmask corresponding with the component type.
      * @returns true on success, false otherwise.
      */
-    void removeComponent(Entity &entity, ComponentType type) const {
-        const auto pos = static_cast<size_t>(type);
+    template <typename T> void removeComponent(Entity &entity) const {
+        const auto pos = ComponentBitRegistry::index<T>();
         SECS_ASSERT(entity.test(pos), "This entity already has this component assigned.");
         entity.flip(pos);
     }

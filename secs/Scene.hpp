@@ -39,15 +39,15 @@ public:
     template<typename T>
     void registerComponent(Entity &entity, const T &component) {
         SECS_ASSERT(entity, "Cannot register component for entity that is not alive.");
-        m_entityManager.assignComponent(entity, component.type());
+        m_entityManager.assignComponent<T>(entity);
         m_componentManager.registerComponent<T>(entity, component);
     }
 
     /// @brief Deletes the relation between the entity and the component of type T.
     template<typename T>
-    void unregisterComponent(Entity &entity, const ComponentType type) {
+    void unregisterComponent(Entity &entity) {
         SECS_ASSERT(entity, "Cannot unregister component for entity that is not alive.");
-        m_entityManager.removeComponent(entity, type);
+        m_entityManager.removeComponent<T>(entity);
         m_componentManager.unregisterComponent<T>(entity);
     }
 

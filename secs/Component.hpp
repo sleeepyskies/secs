@@ -1,5 +1,8 @@
 #pragma once
 
+#include <typeindex>
+
+#include "util/secsAssert.hpp"
 #include "util/secsTypes.hpp"
 
 namespace secs {
@@ -16,13 +19,25 @@ private:
 };
 
 /**
- * @brief Each @ref Component must return their respective enum of this type using type().
+ * @brief This class handles assigning each Component Type a unique number in the range [0, MAX_COMPONENTS].
+ * This is used for setting the ComponentMask bits. TODO: Also make it be used in ComponentManager for indexing.
  */
-enum class ComponentType {
-    TEXTURE_COMPONENT  = 0,
-    POSITION_COMPONENT = 1,
-    CAMERA_COMPONENT = 2,
-    // ...
+class ComponentBitRegistry {
+public:
+    template <typename T> static size_t index() {
+        SECS_ASSERT(s_nextIndex <= MAX_COMPONENTS, "Cannot register more components than MAX_COMPONENTS allows!");
+
+        const auto typeIndex = std::type_index(typeid(T));
+        if (!s_registry.contains(typeIndex)) {
+            s_registry[typeIndex] = s_nextIndex++;
+        }
+
+        return s_registry[typeIndex];
+
+    }
+private:
+    static inline hashmap<std::type_index, size_t> s_registry{};
+    static inline size_t s_nextIndex = 0;
 };
 
 /**
@@ -31,7 +46,6 @@ enum class ComponentType {
 struct Component {
     ComponentID id                     = ComponentIDGenerator::id();
     virtual ~Component()               = default;
-    virtual ComponentType type() const = 0;
 };
 
 } // namespace secs
