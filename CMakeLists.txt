@@ -23,19 +23,13 @@ add_library(secs INTERFACE
         secs/SystemManager.hpp
         secs/Scene.hpp
 
-        # Components
-        secs/components/Component.hpp
-        secs/components/TextureComponent.hpp
-        secs/components/TransformComponent.hpp
-
-        # Systems
-        secs/systems/RenderSystem.hpp
+        # Interfaces
+        secs/Component.hpp
+        secs/System.hpp
 
         # Util
         secs/util/secsTypes.hpp
         secs/util/secsAssert.hpp
-        secs/systems/CameraSystem.hpp
-        secs/components/CameraComponent.hpp
         secs/util/InputData.hpp
 )
 

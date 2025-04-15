@@ -1,6 +1,6 @@
 #pragma once
 
-#include "components/Component.hpp"
+#include "Component.hpp"
 #include "Entity.hpp"
 #include "util/secsAssert.hpp"
 #include "util/secsTypes.hpp"
@@ -24,11 +24,14 @@ public:
                     "Cannot create anymore entities! Max number has already been reached");
 
         m_entityCount++;
-        if (m_unusedIDs.empty())
-            return Entity{ m_entityCount };
-        const EntityID id = m_unusedIDs.front();
+        EntityID id = 0;
+        if (m_unusedIDs.empty()) {
+            id =  m_entityCount;
+        } else {
+            id =  m_unusedIDs.front();
+            m_unusedIDs.pop();
+        }
         SECS_ASSERT(!m_entities.contains(id), "This Entity ID already exists!");
-        m_unusedIDs.pop();
         m_entities.insert(id);
         return Entity{ id };
     }

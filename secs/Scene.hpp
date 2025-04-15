@@ -82,9 +82,19 @@ public:
     template<typename T>
     void unregisterSystem() { m_systemManager.unregisterSystem<T>(); }
 
+    /// @brief Calls the update method of all active systems.
+    void update(const double deltaTime, const InputData &inputData) {
+        m_systemManager.update(deltaTime, *this, inputData);
+    }
+
+    void setName(const std::string &name) { m_name = name; }
+    std::string name() { return m_name; }
+
 private:
     EntityManager m_entityManager;
     ComponentManager m_componentManager;
     SystemManager m_systemManager;
+
+    std::string m_name = "unnamed";
 };
 } // namespace secs

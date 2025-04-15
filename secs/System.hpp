@@ -15,7 +15,7 @@ public:
     virtual ~System() = default;
 
     /// @brief Handles updating this systems logic.
-    virtual void update(float deltaTime, Scene &scene, InputData &inputData) = 0;
+    virtual void update(const double deltaTime, Scene &scene, const InputData &inputData) = 0;
 };
 
 } // namespace secs

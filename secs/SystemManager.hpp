@@ -1,6 +1,6 @@
 #pragma once
 
-#include "systems/System.hpp"
+#include "System.hpp"
 #include "util/secsAssert.hpp"
 #include "util/secsTypes.hpp"
 #include <typeindex>
@@ -28,6 +28,14 @@ public:
        SECS_ASSERT(m_registeredSystems.contains(index<T>()), "This System is not yet registered.");
 
         m_registeredSystems.erase(index<T>());
+    }
+
+    /// @brief Calls the update method of all active systems.
+    void update(const double deltaTime, Scene &scene, const InputData &inputData) const {
+        for (const auto& pair : m_registeredSystems) {
+            const auto& system = pair.second;
+            system->update(deltaTime, scene, inputData);
+        }
     }
 
 private:
