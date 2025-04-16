@@ -1,6 +1,6 @@
 #pragma once
 
-#include "util/secsTypes.hpp"
+#include "../../internal/util/secsTypes.hpp"
 
 namespace secs {
 /**

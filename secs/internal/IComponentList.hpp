@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Component.hpp"
+#include "../include/secs/Component.hpp"
 #include "util/secsAssert.hpp"
 #include <vector>
 

@@ -2,7 +2,7 @@
 
 #include <SDL_keycode.h>
 #include <glm/vec2.hpp>
-#include "secsTypes.hpp"
+#include "util/secsTypes.hpp"
 
 namespace secs {
 /**

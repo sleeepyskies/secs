@@ -2,8 +2,8 @@
 
 #include <typeindex>
 
-#include "util/secsAssert.hpp"
-#include "util/secsTypes.hpp"
+#include "../../internal/util/secsAssert.hpp"
+#include "../../internal/util/secsTypes.hpp"
 
 namespace secs {
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "util/InputData.hpp"
+#include "InputData.hpp"
 
 namespace secs {
 

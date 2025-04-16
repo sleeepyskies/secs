@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Component.hpp"
-#include "Entity.hpp"
+#include "../include/secs/Component.hpp"
+#include "../include/secs/Entity.hpp"
 #include "util/secsAssert.hpp"
 #include "util/secsTypes.hpp"
 #include <queue>

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Entity.hpp"
-#include "IComponentList.hpp"
+#include "../Entity.hpp"
+#include "../IComponentList.hpp"
 #include <typeindex>
 #include "util/secsAssert.hpp"
 #include "util/secsTypes.hpp"

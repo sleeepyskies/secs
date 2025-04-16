@@ -14,23 +14,23 @@ FetchContent_MakeAvailable(slog)
 
 add_library(secs INTERFACE
         # Core Data Classes
-        secs/Entity.hpp
-        secs/IComponentList.hpp
+        secs/include/secs/Entity.hpp
+        secs/internal/IComponentList.hpp
 
         # Core Logic Classes
-        secs/EntityManager.hpp
-        secs/ComponentManager.hpp
-        secs/SystemManager.hpp
-        secs/Scene.hpp
+        secs/internal/EntityManager.hpp
+        secs/internal/ComponentManager.hpp
+        secs/internal/SystemManager.hpp
+        secs/include/secs/Scene.hpp
 
         # Interfaces
-        secs/Component.hpp
-        secs/System.hpp
+        secs/include/secs/Component.hpp
+        secs/include/secs/System.hpp
 
         # Util
-        secs/util/secsTypes.hpp
-        secs/util/secsAssert.hpp
-        secs/util/InputData.hpp
+        secs/internal/util/secsTypes.hpp
+        secs/internal/util/secsAssert.hpp
+        secs/include/secs/InputData.hpp
 )
 
 target_include_directories(
@@ -38,7 +38,7 @@ target_include_directories(
         ${CMAKE_CURRENT_SOURCE_DIR}/secs
         ${CMAKE_CURRENT_SOURCE_DIR}/secs/components
         ${CMAKE_CURRENT_SOURCE_DIR}/secs/systems
-        ${CMAKE_CURRENT_SOURCE_DIR}/secs/util
+        secs/internal/util
 )
 
 target_include_directories(secs INTERFACE ${slog_SOURCE_DIR})

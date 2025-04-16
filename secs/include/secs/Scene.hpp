@@ -1,8 +1,8 @@
 #pragma once
 
-#include "ComponentManager.hpp"
-#include "EntityManager.hpp"
-#include "SystemManager.hpp"
+#include "../../internal/ComponentManager.hpp"
+#include "../../internal/EntityManager.hpp"
+#include "../../internal/SystemManager.hpp"
 
 namespace secs {
 /**

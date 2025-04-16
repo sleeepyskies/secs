@@ -1,6 +1,6 @@
 #pragma once
 
-#include "System.hpp"
+#include "../include/secs/System.hpp"
 #include "util/secsAssert.hpp"
 #include "util/secsTypes.hpp"
 #include <typeindex>
