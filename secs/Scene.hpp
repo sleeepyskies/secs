@@ -53,9 +53,9 @@ public:
 
     /// @brief Gets the component of type T associated with this entity.
     template<typename T>
-    T &getComponent(const Entity entity) {
-        SECS_ASSERT(entity, "Cannot get component for entity that is not alive.");
-        return m_componentManager.getComponent<T>(entity);
+    T &getComponent(const EntityID eid) {
+        SECS_ASSERT(eid != 0, "Cannot get component for entity that is not alive.");
+        return m_componentManager.getComponent<T>(eid);
     }
 
     /// @brief Returns all active components of this type.

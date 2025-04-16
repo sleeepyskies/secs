@@ -54,11 +54,11 @@ public:
     }
 
     /// @brief Gets the component of type T associated with the given entity.
-    template <typename T> T &getComponent(const Entity entity) {
-        SECS_ASSERT(hasComponent<T>(entity), "This entity does not have the given component type.");
+    template <typename T> T &getComponent(const EntityID eid) {
+        SECS_ASSERT(hasComponent<T>(eid), "This entity does not have the given component type.");
 
         ComponentList<T>& list = getList<T>();
-        const ComponentID cid = m_entityToComponentID[entity.id()][index<T>()];
+        const ComponentID cid = m_entityToComponentID[eid][index<T>()];
         return list.getComponent(cid);
     }
 
