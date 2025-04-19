@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../include/secs/Component.hpp"
-#include "util/secsAssert.hpp"
+#include "Component.hpp"
+#include "secsAssert.hpp"
 #include <vector>
 
 namespace secs {

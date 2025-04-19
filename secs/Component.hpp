@@ -1,9 +1,8 @@
 #pragma once
 
 #include <typeindex>
-
-#include "../../internal/util/secsAssert.hpp"
-#include "../../internal/util/secsTypes.hpp"
+#include "secsAssert.hpp"
+#include "secsTypes.hpp"
 
 namespace secs {
 
@@ -14,6 +13,7 @@ namespace secs {
 class ComponentIDGenerator {
 public:
     static ComponentID id() { return s_currentId++; }
+
 private:
     static inline ComponentID s_currentId = 1;
 };
@@ -33,8 +33,8 @@ public:
         }
 
         return s_registry[typeIndex];
-
     }
+
 private:
     static inline hashmap<std::type_index, size_t> s_registry{};
     static inline size_t s_nextIndex = 0;
@@ -44,7 +44,8 @@ private:
  *@brief The base Component class that all other Components must implement.
 */
 struct Component {
-    ComponentID id       = ComponentIDGenerator::id();
+    ComponentID id = ComponentIDGenerator::id();
+
     virtual ~Component() = default;
 };
 

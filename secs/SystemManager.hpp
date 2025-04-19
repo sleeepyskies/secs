@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../include/secs/System.hpp"
-#include "util/secsAssert.hpp"
-#include "util/secsTypes.hpp"
+#include "System.hpp"
+#include "secsAssert.hpp"
+#include "secsTypes.hpp"
 #include <typeindex>
 
 namespace secs {

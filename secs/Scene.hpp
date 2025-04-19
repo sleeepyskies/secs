@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../../internal/ComponentManager.hpp"
-#include "../../internal/EntityManager.hpp"
-#include "../../internal/SystemManager.hpp"
+#include "secsAssert.hpp"
+#include "ComponentManager.hpp"
+#include "SystemManager.hpp"
 
 namespace secs {
 /**
@@ -83,8 +83,8 @@ public:
     void unregisterSystem() { m_systemManager.unregisterSystem<T>(); }
 
     /// @brief Calls the update method of all active systems.
-    void update(const double deltaTime, const InputData &inputData) {
-        m_systemManager.update(deltaTime, *this, inputData);
+    void update(const double deltaTime) {
+        m_systemManager.update(deltaTime, *this);
     }
 
     void setName(const std::string &name) { m_name = name; }

@@ -14,31 +14,39 @@ FetchContent_MakeAvailable(slog)
 
 add_library(secs INTERFACE
         # Core Data Classes
-        secs/include/secs/Entity.hpp
-        secs/internal/IComponentList.hpp
+        secs/Entity.hpp
+        secs/ComponentList.hpp
 
         # Core Logic Classes
-        secs/internal/EntityManager.hpp
-        secs/internal/ComponentManager.hpp
-        secs/internal/SystemManager.hpp
-        secs/include/secs/Scene.hpp
+        secs/EntityManager.hpp
+        secs/ComponentManager.hpp
+        secs/SystemManager.hpp
+        secs/Scene.hpp
 
         # Interfaces
-        secs/include/secs/Component.hpp
-        secs/include/secs/System.hpp
+        secs/Component.hpp
+        secs/System.hpp
 
         # Util
-        secs/internal/util/secsTypes.hpp
-        secs/internal/util/secsAssert.hpp
-        secs/include/secs/InputData.hpp
+        secs/secsTypes.hpp
+        secs/secsAssert.hpp
+        secs/secs.hpp
+
+        # header include file
+        secs/secs.hpp
 )
 
-target_include_directories(
-        secs INTERFACE
-        ${CMAKE_CURRENT_SOURCE_DIR}/secs
-        ${CMAKE_CURRENT_SOURCE_DIR}/secs/components
-        ${CMAKE_CURRENT_SOURCE_DIR}/secs/systems
-        secs/internal/util
+target_include_directories(secs INTERFACE
+    ${CMAKE_CURRENT_SOURCE_DIR}/secs/include
 )
 
-target_include_directories(secs INTERFACE ${slog_SOURCE_DIR})
+target_include_directories(secs_test PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/secs/internal
+        secs/util
+        ${slog_SOURCE_DIR}
+)
+
+get_target_property(INCLUDE_DIRS secs INCLUDE_DIRECTORIES)
+foreach(DIR ${INCLUDE_DIRS})
+    message(STATUS "secs Include directory: ${DIR}")
+endforeach()

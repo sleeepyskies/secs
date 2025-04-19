@@ -1,10 +1,9 @@
 #pragma once
 
-#include "../Entity.hpp"
-#include "../IComponentList.hpp"
+#include "ComponentList.hpp"
 #include <typeindex>
-#include "util/secsAssert.hpp"
-#include "util/secsTypes.hpp"
+#include "secsAssert.hpp"
+#include "secsTypes.hpp"
 #include "EntityManager.hpp"
 
 namespace secs {
