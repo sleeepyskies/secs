@@ -1,39 +1,61 @@
-cmake_minimum_required(VERSION 3.15...3.31)
-project(secs)
-
+cmake_minimum_required(VERSION 3.23)
 set(CMAKE_CXX_STANDARD 20)
 
-# slog is my own lightweight header only logging library used throughout this project
-include(FetchContent)
-FetchContent_Declare(
-        slog
-        GIT_REPOSITORY https://github.com/sleeepyskies/slog.git
-        GIT_TAG main
+project(
+        secs
+        DESCRIPTION "A simple ecs library written for c++20"
+        HOMEPAGE_URL "https://github.com/sleeepyskies/secs"
+        LANGUAGES CXX
 )
-FetchContent_MakeAvailable(slog)
+include(GNUInstallDirs)
 
-add_library(secs STATIC
-        src/ComponentManager.hpp
-        src/ecs.hpp
-        src/Entity.hpp
-        src/EntityManager.cpp
-        src/EntityManager.hpp
-        src/IComponentList.hpp
-        src/Scene.hpp
-        src/SystemManager.hpp
-        src/systems/RenderSystem.hpp
-        src/components/IComponent.hpp
-        src/components/TextureComponent.hpp
-        src/components/TransformComponent.hpp
-        src/util/types.hpp
-        src/util/types.hpp
+add_library(secs INTERFACE
+        include/Assert.hpp)
+
+target_include_directories(
+        secs
+        INTERFACE
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
-target_include_directories(secs PUBLIC
-        ${CMAKE_CURRENT_SOURCE_DIR}/src
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/components
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/systems
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/util
-)
+option(SECS_INCLUDE_HEADERS "Include header files to target" ON)
 
-target_include_directories(secs PRIVATE ${slog_SOURCE_DIR})
+# make IDE friendly (except clion urgh)
+if (SECS_INCLUDE_HEADERS)
+    message(STATUS "Including header files in the target")
+    set(
+            SECS_HEADERS
+
+            include/Component.hpp
+            include/ComponentBitMap.hpp
+            include/ComponentList.hpp
+            include/ComponentManager.hpp
+            include/ECSProperties.hpp
+            include/EntityHandle.hpp
+            include/EntityManager.hpp
+            include/Scene.hpp
+            include/SingletonManager.hpp
+            include/System.hpp
+            include/SystemManager.hpp
+            include/SystemPhase.hpp
+    )
+
+    target_sources(secs INTERFACE ${SECS_HEADERS})
+endif ()
+
+# todo: write tests
+# tests
+option(SECS_ENABLE_TESTS "Enable tests when building" ON)
+if (SECS_ENABLE_TESTS)
+    enable_testing()
+    message(STATUS "Running secs tests")
+    add_subdirectory(test)
+endif ()
+
+# examples
+option(SECS_BUILD_EXAMPLES "Build examples" ON)
+if (SECS_BUILD_EXAMPLES)
+    message(STATUS "Building examples")
+    add_subdirectory(example)
+endif ()
